@@ -26,21 +26,16 @@ public class Topic {
 
         MessageConsumer api = session.createConsumer(sistemaTopico);
         MessageConsumer sustentacao = session.createConsumer(sistemaTopico);
+       TextMessage message1 = (TextMessage) api.receive();
 
-        TextMessage message = session.createTextMessage("Send.");
+        System.out.println("Rec1"+api.getText());
+        TextMessage sustentacao = (TextMessage) sustentacao.receive();
+        System.out.println("Consumer 2 "+sustentacao.getText());
+        //https://www.ibm.com/docs/pt-br/was/8.5.5?topic=messaging-programming-use-jms-directly
+        connection.close();
+        initialContext.close();
 
-        producer.send(message);
-
-        connection.start();
-        // TODO
 
     }
 
 }
-
-
-
-
-
-
-
